@@ -13,7 +13,7 @@
     <artifactId>${module.name}-engine</artifactId>
 
     <properties>
-        <module.name>sample</module.name>
+        <module.name>selfdefense</module.name>
     </properties>
 
     <repositories>
