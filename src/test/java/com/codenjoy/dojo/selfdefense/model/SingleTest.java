@@ -23,7 +23,6 @@ package com.codenjoy.dojo.selfdefense.model;
  */
 
 
-import com.codenjoy.dojo.selfdefense.services.Events;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.EventListener;
 import com.codenjoy.dojo.services.Game;
@@ -34,9 +33,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class SingleTest {
 
@@ -53,12 +52,17 @@ public class SingleTest {
     @Before
     public void setup() {
         Level level = new LevelImpl(
-                "☼☼☼☼☼☼" +
-                "☼   $☼" +
-                "☼    ☼" +
-                "☼    ☼" +
-                "☼    ☼" +
-                "☼☼☼☼☼☼");
+                "           " +
+                "           " +
+                "           " +
+                "           " +
+                "           " +
+                "           " +
+                "           " +
+                "           " +
+                "           " +
+                "=+= -*- -*-" +
+                "+☺+ *☻* *☻*");
 
         dice = mock(Dice.class);
         field = new Selfdefense(level, dice);
@@ -102,140 +106,75 @@ public class SingleTest {
         assertEquals(expected, game3.getBoardAsString());
     }
 
-    // рисуем несколько игроков
     @Test
-    public void shouldPrint() {
-        asrtFl1("☼☼☼☼☼☼\n" +
-                "☼☺ ☻$☼\n" +
-                "☼    ☼\n" +
-                "☼ ☻  ☼\n" +
-                "☼    ☼\n" +
-                "☼☼☼☼☼☼\n");
+    public void shouldPrintAllBoards() {
+        asrtFl1("           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "=+= -*- -*-\n" +
+                "+☺+ *☻* *☻*\n");
 
-        asrtFl2(
-                "☼☼☼☼☼☼\n" +
-                "☼☻ ☻$☼\n" +
-                "☼    ☼\n" +
-                "☼ ☺  ☼\n" +
-                "☼    ☼\n" +
-                "☼☼☼☼☼☼\n");
+        asrtFl2("           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "-*- =+= -*-\n" +
+                "*☻* +☺+ *☻*\n");
 
-        asrtFl3(
-                "☼☼☼☼☼☼\n" +
-                "☼☻ ☺$☼\n" +
-                "☼    ☼\n" +
-                "☼ ☻  ☼\n" +
-                "☼    ☼\n" +
-                "☼☼☼☼☼☼\n");
+        asrtFl3("           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "-*- -*- =+=\n" +
+                "*☻* *☻* +☺+\n");
     }
 
-    // Каждый игрок может упраыляться за тик игры независимо
-    @Test
-    public void shouldJoystick() {
-        game1.getJoystick().act();
-        game1.getJoystick().down();
-        game2.getJoystick().right();
-        game3.getJoystick().down();
-
-        field.tick();
-
-        asrtFl1("☼☼☼☼☼☼\n" +
-                "☼x  $☼\n" +
-                "☼☺ ☻ ☼\n" +
-                "☼  ☻ ☼\n" +
-                "☼    ☼\n" +
-                "☼☼☼☼☼☼\n");
-    }
-
-    // игроков можно удалять из игры
     @Test
     public void shouldRemove() {
         game3.close();
 
         field.tick();
 
-        asrtFl1("☼☼☼☼☼☼\n" +
-                "☼☺  $☼\n" +
-                "☼    ☼\n" +
-                "☼ ☻  ☼\n" +
-                "☼    ☼\n" +
-                "☼☼☼☼☼☼\n");
+        asrtFl1("           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "=+= -*-    \n" +
+                "+☺+ *☻*    \n");
+
+        asrtFl2("           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "           \n" +
+                "-*- =+=    \n" +
+                "*☻* +☺+    \n");
     }
 
-    // игрок может взорваться на бомбе
-    @Test
-    public void shouldKill() {
-        game1.getJoystick().down();
-        game1.getJoystick().act();
-        game3.getJoystick().left();
-
-        field.tick();
-
-        asrtFl1("☼☼☼☼☼☼\n" +
-                "☼x☻ $☼\n" +
-                "☼☺   ☼\n" +
-                "☼ ☻  ☼\n" +
-                "☼    ☼\n" +
-                "☼☼☼☼☼☼\n");
-
-        game3.getJoystick().left();
-        field.tick();
-
-        asrtFl1("☼☼☼☼☼☼\n" +
-                "☼X  $☼\n" +
-                "☼☺   ☼\n" +
-                "☼ ☻  ☼\n" +
-                "☼    ☼\n" +
-                "☼☼☼☼☼☼\n");
-
-        verify(listener3).event(Events.LOOSE);
-        assertTrue(game3.isGameOver());
-
-        dice(4, 1);
-        game3.newGame();
-
-        field.tick();
-
-        asrtFl1("☼☼☼☼☼☼\n" +
-                "☼   $☼\n" +
-                "☼☺   ☼\n" +
-                "☼ ☻  ☼\n" +
-                "☼   ☻☼\n" +
-                "☼☼☼☼☼☼\n");
-    }
-
-    // игрок может подобрать золото
-    @Test
-    public void shouldGetGold() {
-        game3.getJoystick().right();
-
-        dice(1, 2);
-
-        field.tick();
-
-        asrtFl1("☼☼☼☼☼☼\n" +
-                "☼☺  ☻☼\n" +
-                "☼    ☼\n" +
-                "☼$☻  ☼\n" +
-                "☼    ☼\n" +
-                "☼☼☼☼☼☼\n");
-
-        verify(listener3).event(Events.WIN);
-    }
-
-    // игрок не может пойи на другого игрока
-    @Test
-    public void shouldCantGoOnHero() {
-        game1.getJoystick().right();
-        game3.getJoystick().left();
-
-        field.tick();
-
-        asrtFl1("☼☼☼☼☼☼\n" +
-                "☼ ☺☻$☼\n" +
-                "☼    ☼\n" +
-                "☼ ☻  ☼\n" +
-                "☼    ☼\n" +
-                "☼☼☼☼☼☼\n");
-    }
+    // ушел юзер, и снова вернулся что будет?
 }

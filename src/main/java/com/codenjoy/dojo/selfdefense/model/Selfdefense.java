@@ -25,7 +25,6 @@ package com.codenjoy.dojo.selfdefense.model;
 
 import com.codenjoy.dojo.selfdefense.model.items.*;
 import com.codenjoy.dojo.selfdefense.services.Events;
-import com.codenjoy.dojo.services.BoardUtils;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.printer.BoardReader;
@@ -130,6 +129,18 @@ public class Selfdefense implements Field {
     @Override
     public void remove(Player player) {
         players.remove(player);
+
+        Hero hero = player.getHero();
+
+        platforms  = (List)getWithout(hero, platforms);
+        guards     = (List)getWithout(hero, guards);
+        spaceships = (List)getWithout(hero, spaceships);
+    }
+
+    private List<? extends Ownerable> getWithout(Hero hero, List<? extends Ownerable> list) {
+        return list.stream()
+                .filter(platform -> platform.getHero() != hero)
+                .collect(toList());
     }
 
     public List<Platform> getPlatforms() {

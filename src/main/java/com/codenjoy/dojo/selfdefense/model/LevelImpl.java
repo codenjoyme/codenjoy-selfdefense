@@ -27,6 +27,7 @@ import com.codenjoy.dojo.selfdefense.model.items.*;
 import com.codenjoy.dojo.services.LengthToXY;
 import com.codenjoy.dojo.services.Point;
 
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -65,21 +66,28 @@ public class LevelImpl implements Level {
     @Override
     public List<Platform> getPlatforms(List<Hero> bases) {
         return pointsOf(PLATFORM, OTHER_PLATFORM).stream()
-                .map(pair -> new Platform(pair.point, bases.get(pair.index)))
+                .map(pair -> new Platform(pair.point, getNearest(bases, pair.point)))
                 .collect(toList());
+    }
+
+    private Hero getNearest(List<Hero> bases, Point point) {
+        return bases.stream()
+                .sorted(Comparator.comparingDouble(base -> base.distance(point)))
+                .findFirst()
+                .get();
     }
 
     @Override
     public List<Spaceship> getSpaceships(List<Hero> bases) {
         return pointsOf(SPACESHIP, OTHER_SPACESHIP).stream()
-                .map(pair -> new Spaceship(pair.point, bases.get(pair.index)))
+                .map(pair -> new Spaceship(pair.point, getNearest(bases, pair.point)))
                 .collect(toList());
     }
 
     @Override
     public List<Guard> getGuards(List<Hero> bases) {
         return pointsOf(GUARD, OTHER_GUARD).stream()
-                .map(pair -> new Guard(pair.point, bases.get(pair.index)))
+                .map(pair -> new Guard(pair.point, getNearest(bases, pair.point)))
                 .collect(toList());
     }
 
