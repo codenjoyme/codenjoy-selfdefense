@@ -95,10 +95,11 @@ public class LevelImpl implements Level {
 
     private List<Pair> pointsOf(Elements... elements) {
         List<Pair> result = new LinkedList<>();
-        for (int index = 0; index < map.length(); index++) {
-            for (Elements el : elements) {
-                if (el.ch == map.charAt(index)) {
-                    result.add(new Pair(xy.getXY(index), index));
+        for (int i = 0; i < map.length(); i++) {
+            for (int j = 0; j < elements.length; j++) {
+                Elements el = elements[j];
+                if (el.ch == map.charAt(i)) {
+                    result.add(new Pair(xy.getXY(i), j));
                 }
             }
         }
