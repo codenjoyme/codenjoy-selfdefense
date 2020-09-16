@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.selfdefense.client.ai;
+package com.codenjoy.dojo.selfdefense.model.items;
 
 /*-
  * #%L
@@ -23,24 +23,23 @@ package com.codenjoy.dojo.selfdefense.client.ai;
  */
 
 
-import com.codenjoy.dojo.client.Solver;
-import com.codenjoy.dojo.selfdefense.client.Board;
-import com.codenjoy.dojo.services.Dice;
-import com.codenjoy.dojo.services.algs.DeikstraFindWay;
+import com.codenjoy.dojo.selfdefense.model.Elements;
+import com.codenjoy.dojo.selfdefense.model.Hero;
+import com.codenjoy.dojo.selfdefense.model.Player;
+import com.codenjoy.dojo.services.Point;
 
-public class AISolver implements Solver<Board> {
+public class Platform extends Ownerable {
 
-    private DeikstraFindWay way;
-    private Dice dice;
-
-    public AISolver(Dice dice) {
-        this.dice = dice;
-        this.way = new DeikstraFindWay();
+    public Platform(Point point, Hero owner) {
+        super(point, owner);
     }
 
     @Override
-    public String get(final Board board) {
-        return "";
+    public Elements state(Player player, Object... alsoAtPoint) {
+        if (player.getHero() == getHero()) {
+            return Elements.PLATFORM;
+        } else {
+            return Elements.OTHER_PLATFORM;
+        }
     }
-
 }

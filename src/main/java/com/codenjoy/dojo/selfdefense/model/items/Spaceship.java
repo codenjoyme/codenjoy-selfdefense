@@ -24,23 +24,22 @@ package com.codenjoy.dojo.selfdefense.model.items;
 
 
 import com.codenjoy.dojo.selfdefense.model.Elements;
+import com.codenjoy.dojo.selfdefense.model.Hero;
 import com.codenjoy.dojo.selfdefense.model.Player;
 import com.codenjoy.dojo.services.Point;
-import com.codenjoy.dojo.services.PointImpl;
-import com.codenjoy.dojo.services.State;
 
-public class Bomb extends PointImpl implements State<Elements, Player> {
+public class Spaceship extends Ownerable {
 
-    public Bomb(int x, int y) {
-        super(x, y);
-    }
-
-    public Bomb(Point point) {
-        super(point);
+    public Spaceship(Point point, Hero owner) {
+        super(point, owner);
     }
 
     @Override
     public Elements state(Player player, Object... alsoAtPoint) {
-        return Elements.BOMB;
+        if (player.getHero() == getHero()) {
+            return Elements.SPACESHIP;
+        } else {
+            return Elements.OTHER_SPACESHIP;
+        }
     }
 }

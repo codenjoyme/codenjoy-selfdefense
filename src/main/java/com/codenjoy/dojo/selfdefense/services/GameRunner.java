@@ -26,7 +26,6 @@ package com.codenjoy.dojo.selfdefense.services;
 import com.codenjoy.dojo.client.ClientBoard;
 import com.codenjoy.dojo.client.Solver;
 import com.codenjoy.dojo.selfdefense.client.Board;
-import com.codenjoy.dojo.selfdefense.client.ai.AISolver;
 import com.codenjoy.dojo.selfdefense.model.*;
 import com.codenjoy.dojo.services.*;
 import com.codenjoy.dojo.services.multiplayer.GameField;
@@ -47,36 +46,16 @@ public class GameRunner extends AbstractGameType implements GameType {
     }
 
     protected String getMap() {
-        return "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼" +
-                "☼          $                 ☼" +
-                "☼                            ☼" +
-                "☼   $              $         ☼" +
-                "☼                       $    ☼" +
-                "☼  $                         ☼" +
-                "☼                            ☼" +
-                "☼                            ☼" +
-                "☼              $             ☼" +
-                "☼        $                   ☼" +
-                "☼                            ☼" +
-                "☼                            ☼" +
-                "☼ $                         $☼" +
-                "☼                            ☼" +
-                "☼              $             ☼" +
-                "☼                            ☼" +
-                "☼    $                       ☼" +
-                "☼                            ☼" +
-                "☼                       $    ☼" +
-                "☼                            ☼" +
-                "☼                            ☼" +
-                "☼                            ☼" +
-                "☼            $               ☼" +
-                "☼                            ☼" +
-                "☼                            ☼" +
-                "☼       $                $   ☼" +
-                "☼                            ☼" +
-                "☼       ☺        $           ☼" +
-                "☼                            ☼" +
-                "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼";
+        return  "X .   X , " +
+                " .      , " +
+                ". X . , X," +
+                "          " +
+                ". .    ,  " +
+                "          " +
+                "  .    ,  " +
+                " ===  --- " +
+                " +++  *** " +
+                " +☺+  *☻* ";
     }
 
     @Override
@@ -106,7 +85,7 @@ public class GameRunner extends AbstractGameType implements GameType {
 
     @Override
     public Class<? extends Solver> getAI() {
-        return AISolver.class;
+        return null;
     }
 
     @Override

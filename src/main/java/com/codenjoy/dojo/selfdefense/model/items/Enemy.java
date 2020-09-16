@@ -4,7 +4,7 @@ package com.codenjoy.dojo.selfdefense.model.items;
  * #%L
  * Codenjoy - it's a dojo-like platform from developers to developers.
  * %%
- * Copyright (C) 2018 Codenjoy
+ * Copyright (C) 2018 - 2020 Codenjoy
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -22,25 +22,20 @@ package com.codenjoy.dojo.selfdefense.model.items;
  * #L%
  */
 
-
 import com.codenjoy.dojo.selfdefense.model.Elements;
 import com.codenjoy.dojo.selfdefense.model.Player;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.PointImpl;
 import com.codenjoy.dojo.services.State;
 
-public class Wall extends PointImpl implements State<Elements, Player> {
+public class Enemy extends PointImpl implements State<Elements, Player> {
 
-    public Wall(int x, int y) {
-        super(x, y);
-    }
-
-    public Wall(Point point) {
+    public Enemy(Point point) {
         super(point);
     }
 
     @Override
     public Elements state(Player player, Object... alsoAtPoint) {
-        return Elements.WALL;
+        return Elements.ENEMY;
     }
 }

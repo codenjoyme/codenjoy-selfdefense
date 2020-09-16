@@ -28,12 +28,22 @@ import com.codenjoy.dojo.services.printer.CharElements;
 public enum Elements implements CharElements {
 
     NONE(' '),
-    WALL('☼'),
-    HERO('☺'),
-    OTHER_HERO('☻'),
-    DEAD_HERO('X'),
-    GOLD('$'),
-    BOMB('x');
+
+    BASE('☺'),
+    SPACESHIP('.'),
+    PLATFORM('='),
+    GUARD('+'),
+
+    OTHER_BASE('☻'),
+    OTHER_SPACESHIP(','),
+    OTHER_PLATFORM('-'),
+    OTHER_GUARD('*'),
+
+    ENEMY('X'),
+
+    // system elements, don't touch it
+    FOG('F'),
+    BACKGROUND('G');
 
     final char ch;
 

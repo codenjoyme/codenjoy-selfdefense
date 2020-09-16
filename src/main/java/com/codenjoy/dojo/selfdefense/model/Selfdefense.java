@@ -23,9 +23,7 @@ package com.codenjoy.dojo.selfdefense.model;
  */
 
 
-import com.codenjoy.dojo.selfdefense.model.items.Bomb;
-import com.codenjoy.dojo.selfdefense.model.items.Gold;
-import com.codenjoy.dojo.selfdefense.model.items.Wall;
+import com.codenjoy.dojo.selfdefense.model.items.*;
 import com.codenjoy.dojo.selfdefense.services.Events;
 import com.codenjoy.dojo.services.BoardUtils;
 import com.codenjoy.dojo.services.Dice;
@@ -39,9 +37,11 @@ import static java.util.stream.Collectors.toList;
 
 public class Selfdefense implements Field {
 
-    private List<Wall> walls;
-    private List<Gold> gold;
-    private List<Bomb> bombs;
+    private List<Guard> guards;
+    private List<Platform> platforms;
+    private List<Spaceship> spaceships;
+    private List<Enemy> enemies;
+    private List<Hero> bases;
 
     private List<Player> players;
 
@@ -50,11 +50,13 @@ public class Selfdefense implements Field {
 
     public Selfdefense(Level level, Dice dice) {
         this.dice = dice;
-        walls = level.getWalls();
-        gold = level.getGold();
+        bases = level.getBases();
+        platforms = level.getPlatforms(bases);
+        spaceships = level.getSpaceships(bases);
+        guards = level.getGuards(bases);
+        enemies = level.getEnemies();
         size = level.getSize();
         players = new LinkedList<>();
-        bombs = new LinkedList<>();
     }
 
     @Override
@@ -64,13 +66,13 @@ public class Selfdefense implements Field {
 
             hero.tick();
 
-            if (gold.contains(hero)) {
-                gold.remove(hero);
-                player.event(Events.WIN);
-
-                Point pos = getFreeRandom();
-                gold.add(new Gold(pos));
-            }
+//            if (spaceships.contains(hero)) {
+//                spaceships.remove(hero);
+//                player.event(Events.WIN);
+//
+//                Point pos = getFreeBase();
+//                spaceships.add(new Spaceship(pos));
+//            }
         }
 
         for (Player player : players) {
@@ -95,42 +97,20 @@ public class Selfdefense implements Field {
                 || x < 0
                 || y < 0
                 || y > size - 1
-                || walls.contains(pt)
+                || platforms.contains(pt)
                 || getHeroes().contains(pt);
     }
 
     @Override
-    public Point getFreeRandom() {
-        return BoardUtils.getFreeRandom(size, dice, pt -> isFree(pt));
+    public Hero getFreeBase() {
+        return bases.stream()
+                .filter(hero -> hero.field() == null)
+                .findFirst()
+                .get();
     }
 
-    @Override
-    public boolean isFree(Point pt) {
-        return !(gold.contains(pt)
-                || bombs.contains(pt)
-                || walls.contains(pt)
-                || getHeroes().contains(pt));
-    }
-
-    @Override
-    public boolean isBomb(Point pt) {
-        return bombs.contains(pt);
-    }
-
-    @Override
-    public void setBomb(Point pt) {
-        if (!bombs.contains(pt)) {
-            bombs.add(new Bomb(pt));
-        }
-    }
-
-    @Override
-    public void removeBomb(Point pt) {
-        bombs.remove(pt);
-    }
-
-    public List<Gold> getGold() {
-        return gold;
+    public List<Spaceship> getSpaceships() {
+        return spaceships;
     }
 
     public List<Hero> getHeroes() {
@@ -152,12 +132,16 @@ public class Selfdefense implements Field {
         players.remove(player);
     }
 
-    public List<Wall> getWalls() {
-        return walls;
+    public List<Platform> getPlatforms() {
+        return platforms;
     }
 
-    public List<Bomb> getBombs() {
-        return bombs;
+    public List<Enemy> getEnemies() {
+        return enemies;
+    }
+
+    public List<Guard> getGuards() {
+        return guards;
     }
 
     @Override
@@ -173,10 +157,11 @@ public class Selfdefense implements Field {
             @Override
             public Iterable<? extends Point> elements() {
                 return new LinkedList<Point>(){{
-                    addAll(Selfdefense.this.getWalls());
+                    addAll(Selfdefense.this.getPlatforms());
+                    addAll(Selfdefense.this.getGuards());
                     addAll(Selfdefense.this.getHeroes());
-                    addAll(Selfdefense.this.getGold());
-                    addAll(Selfdefense.this.getBombs());
+                    addAll(Selfdefense.this.getSpaceships());
+                    addAll(Selfdefense.this.getEnemies());
                 }};
             }
         };

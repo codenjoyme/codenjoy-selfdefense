@@ -24,23 +24,22 @@ package com.codenjoy.dojo.selfdefense.model.items;
 
 
 import com.codenjoy.dojo.selfdefense.model.Elements;
+import com.codenjoy.dojo.selfdefense.model.Hero;
 import com.codenjoy.dojo.selfdefense.model.Player;
 import com.codenjoy.dojo.services.Point;
-import com.codenjoy.dojo.services.PointImpl;
-import com.codenjoy.dojo.services.State;
 
-public class Gold extends PointImpl implements State<Elements, Player> {
+public class Guard extends Ownerable {
 
-    public Gold(int x, int y) {
-        super(x, y);
-    }
-
-    public Gold(Point point) {
-        super(point);
+    public Guard(Point point, Hero owner) {
+        super(point, owner);
     }
 
     @Override
     public Elements state(Player player, Object... alsoAtPoint) {
-        return Elements.GOLD;
+        if (player.getHero() == getHero()) {
+            return Elements.GUARD;
+        } else {
+            return Elements.OTHER_GUARD;
+        }
     }
 }

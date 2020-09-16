@@ -81,8 +81,6 @@ public class Hero extends PlayerHero<Field> implements State<Elements, Player> {
     @Override
     public void act(int... p) {
         if (!alive) return;
-
-        field.setBomb(this);
     }
 
     @Override
@@ -91,11 +89,6 @@ public class Hero extends PlayerHero<Field> implements State<Elements, Player> {
 
         if (direction != null) {
             Point to = direction.change(this.copy());
-
-            if (field.isBomb(to)) {
-                alive = false;
-                field.removeBomb(to);
-            }
 
             if (!field.isBarrier(to)) {
                 move(to);
@@ -110,14 +103,10 @@ public class Hero extends PlayerHero<Field> implements State<Elements, Player> {
 
     @Override
     public Elements state(Player player, Object... alsoAtPoint) {
-        if (!isAlive()) {
-            return Elements.DEAD_HERO;
-        }
-
-        if (this == player.getHero()) {
-            return Elements.HERO;
+        if (player.getHero() == this) {
+            return Elements.BASE;
         } else {
-            return Elements.OTHER_HERO;
+            return Elements.OTHER_BASE;
         }
     }
 }

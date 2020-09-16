@@ -62,7 +62,7 @@ public class SelfdefenseTest {
 
     private void givenFl(String board) {
         LevelImpl level = new LevelImpl(board);
-        Hero hero = level.getHero().get(0);
+        Hero hero = level.getBases().get(0);
 
         game = new Selfdefense(level, dice);
         listener = mock(EventListener.class);

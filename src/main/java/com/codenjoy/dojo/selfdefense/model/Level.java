@@ -23,8 +23,7 @@ package com.codenjoy.dojo.selfdefense.model;
  */
 
 
-import com.codenjoy.dojo.selfdefense.model.items.Gold;
-import com.codenjoy.dojo.selfdefense.model.items.Wall;
+import com.codenjoy.dojo.selfdefense.model.items.*;
 
 import java.util.List;
 
@@ -32,9 +31,13 @@ public interface Level {
 
     int getSize();
 
-    List<Wall> getWalls();
+    List<Platform> getPlatforms(List<Hero> bases);
 
-    List<Hero> getHero();
+    List<Spaceship> getSpaceships(List<Hero> bases);
 
-    List<Gold> getGold();
+    List<Guard> getGuards(List<Hero> bases);
+
+    List<Hero> getBases();
+
+    List<Enemy> getEnemies();
 }

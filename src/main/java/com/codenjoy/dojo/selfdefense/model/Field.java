@@ -30,13 +30,6 @@ public interface Field extends GameField<Player> {
 
     boolean isBarrier(Point pt);
 
-    Point getFreeRandom();
+    Hero getFreeBase();
 
-    boolean isFree(Point pt);
-
-    boolean isBomb(Point pt);
-
-    void setBomb(Point pt);
-
-    void removeBomb(Point pt);
 }

@@ -23,22 +23,19 @@ package com.codenjoy.dojo.selfdefense.model;
  */
 
 
-import com.codenjoy.dojo.selfdefense.model.items.Gold;
-import com.codenjoy.dojo.selfdefense.model.items.Wall;
+import com.codenjoy.dojo.selfdefense.model.items.*;
 import com.codenjoy.dojo.services.LengthToXY;
 import com.codenjoy.dojo.services.Point;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import static com.codenjoy.dojo.selfdefense.model.Elements.GOLD;
-import static com.codenjoy.dojo.selfdefense.model.Elements.HERO;
-import static com.codenjoy.dojo.selfdefense.model.Elements.WALL;
+import static com.codenjoy.dojo.selfdefense.model.Elements.*;
 import static java.util.stream.Collectors.toList;
 
 public class LevelImpl implements Level {
-    private final LengthToXY xy;
 
+    private final LengthToXY xy;
     private String map;
 
     public LevelImpl(String map) {
@@ -52,32 +49,57 @@ public class LevelImpl implements Level {
     }
 
     @Override
-    public List<Hero> getHero() {
-        return pointsOf(HERO).stream()
-                .map(Hero::new)
-                .collect(toList());
-
-    }
-
-    @Override
-    public List<Gold> getGold() {
-        return pointsOf(GOLD).stream()
-                .map(Gold::new)
+    public List<Hero> getBases() {
+        return pointsOf(BASE, OTHER_BASE).stream()
+                .map(pair -> new Hero(pair.point))
                 .collect(toList());
     }
 
     @Override
-    public List<Wall> getWalls() {
-        return pointsOf(WALL).stream()
-                .map(Wall::new)
+    public List<Enemy> getEnemies() {
+        return pointsOf(ENEMY).stream()
+                .map(pair -> new Enemy(pair.point))
                 .collect(toList());
     }
 
-    private List<Point> pointsOf(Elements element) {
-        List<Point> result = new LinkedList<>();
+    @Override
+    public List<Platform> getPlatforms(List<Hero> bases) {
+        return pointsOf(PLATFORM, OTHER_PLATFORM).stream()
+                .map(pair -> new Platform(pair.point, bases.get(pair.index)))
+                .collect(toList());
+    }
+
+    @Override
+    public List<Spaceship> getSpaceships(List<Hero> bases) {
+        return pointsOf(SPACESHIP, OTHER_SPACESHIP).stream()
+                .map(pair -> new Spaceship(pair.point, bases.get(pair.index)))
+                .collect(toList());
+    }
+
+    @Override
+    public List<Guard> getGuards(List<Hero> bases) {
+        return pointsOf(GUARD, OTHER_GUARD).stream()
+                .map(pair -> new Guard(pair.point, bases.get(pair.index)))
+                .collect(toList());
+    }
+
+    private static class Pair {
+        Point point;
+        int index;
+
+        public Pair(Point point, int index) {
+            this.point = point;
+            this.index = index;
+        }
+    }
+
+    private List<Pair> pointsOf(Elements... elements) {
+        List<Pair> result = new LinkedList<>();
         for (int index = 0; index < map.length(); index++) {
-            if (map.charAt(index) == element.ch) {
-                result.add(xy.getXY(index));
+            for (Elements el : elements) {
+                if (el.ch == map.charAt(index)) {
+                    result.add(new Pair(xy.getXY(index), index));
+                }
             }
         }
         return result;
