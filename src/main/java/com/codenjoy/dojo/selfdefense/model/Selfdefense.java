@@ -62,16 +62,7 @@ public class Selfdefense implements Field {
     public void tick() {
         for (Player player : players) {
             Hero hero = player.getHero();
-
             hero.tick();
-
-//            if (spaceships.contains(hero)) {
-//                spaceships.remove(hero);
-//                player.event(Events.WIN);
-//
-//                Point pos = getFreeBase();
-//                spaceships.add(new Spaceship(pos));
-//            }
         }
 
         for (Player player : players) {

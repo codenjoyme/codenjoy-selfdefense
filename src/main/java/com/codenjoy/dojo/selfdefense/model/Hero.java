@@ -26,6 +26,7 @@ package com.codenjoy.dojo.selfdefense.model;
 import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.State;
+import com.codenjoy.dojo.services.joystick.NoDirectionJoystick;
 import com.codenjoy.dojo.services.multiplayer.PlayerHero;
 
 /**
@@ -34,14 +35,13 @@ import com.codenjoy.dojo.services.multiplayer.PlayerHero;
  * Ну и конечно же он имплементит {@see State}, а значит может быть отрисован на поле.
  * Часть этих интерфейсов объявлены в {@see PlayerHero}, а часть явно тут.
  */
-public class Hero extends PlayerHero<Field> implements State<Elements, Player> {
+public class Hero extends PlayerHero<Field> implements State<Elements, Player>, NoDirectionJoystick {
 
     private boolean alive;
     private Direction direction;
 
     public Hero(Point xy) {
         super(xy);
-        direction = null;
         alive = true;
     }
 
@@ -51,50 +51,17 @@ public class Hero extends PlayerHero<Field> implements State<Elements, Player> {
     }
 
     @Override
-    public void down() {
-        if (!alive) return;
-
-        direction = Direction.DOWN;
-    }
-
-    @Override
-    public void up() {
-        if (!alive) return;
-
-        direction = Direction.UP;
-    }
-
-    @Override
-    public void left() {
-        if (!alive) return;
-
-        direction = Direction.LEFT;
-    }
-
-    @Override
-    public void right() {
-        if (!alive) return;
-
-        direction = Direction.RIGHT;
-    }
-
-    @Override
     public void act(int... p) {
         if (!alive) return;
+
+        // TODO продолжить тут
     }
 
     @Override
     public void tick() {
         if (!alive) return;
 
-        if (direction != null) {
-            Point to = direction.change(this.copy());
-
-            if (!field.isBarrier(to)) {
-                move(to);
-            }
-        }
-        direction = null;
+        // TODO продолжить тут
     }
 
     public boolean isAlive() {
