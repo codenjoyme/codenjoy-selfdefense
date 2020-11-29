@@ -26,6 +26,7 @@ package com.codenjoy.dojo.selfdefense.model;
 import com.codenjoy.dojo.selfdefense.model.items.*;
 import com.codenjoy.dojo.services.LengthToXY;
 import com.codenjoy.dojo.services.Point;
+import com.codenjoy.dojo.utils.LevelUtils;
 
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -51,23 +52,23 @@ public class LevelImpl implements Level {
 
     @Override
     public List<Hero> getBases() {
-        return pointsOf(BASE, OTHER_BASE).stream()
-                .map(pair -> new Hero(pair.point))
-                .collect(toList());
+        return LevelUtils.getObjects(xy, map,
+                (pt, el) -> new Hero(pt),
+                BASE, OTHER_BASE);
     }
 
     @Override
     public List<Enemy> getEnemies() {
-        return pointsOf(ENEMY).stream()
-                .map(pair -> new Enemy(pair.point))
-                .collect(toList());
+        return LevelUtils.getObjects(xy, map,
+                (pt, el) -> new Enemy(pt),
+                ENEMY);
     }
 
     @Override
     public List<Platform> getPlatforms(List<Hero> bases) {
-        return pointsOf(PLATFORM, OTHER_PLATFORM).stream()
-                .map(pair -> new Platform(pair.point, getNearest(bases, pair.point)))
-                .collect(toList());
+        return LevelUtils.getObjects(xy, map,
+                (pt, el) -> new Platform(pt, getNearest(bases, pt)),
+                PLATFORM, OTHER_PLATFORM);
     }
 
     private Hero getNearest(List<Hero> bases, Point point) {
@@ -79,38 +80,15 @@ public class LevelImpl implements Level {
 
     @Override
     public List<Spaceship> getSpaceships(List<Hero> bases) {
-        return pointsOf(SPACESHIP, OTHER_SPACESHIP).stream()
-                .map(pair -> new Spaceship(pair.point, getNearest(bases, pair.point)))
-                .collect(toList());
+        return LevelUtils.getObjects(xy, map,
+                (pt, el) -> new Spaceship(pt, getNearest(bases, pt)),
+                SPACESHIP, OTHER_SPACESHIP);
     }
 
     @Override
     public List<Guard> getGuards(List<Hero> bases) {
-        return pointsOf(GUARD, OTHER_GUARD).stream()
-                .map(pair -> new Guard(pair.point, getNearest(bases, pair.point)))
-                .collect(toList());
-    }
-
-    private static class Pair {
-        Point point;
-        int index;
-
-        public Pair(Point point, int index) {
-            this.point = point;
-            this.index = index;
-        }
-    }
-
-    private List<Pair> pointsOf(Elements... elements) {
-        List<Pair> result = new LinkedList<>();
-        for (int i = 0; i < map.length(); i++) {
-            for (int j = 0; j < elements.length; j++) {
-                Elements el = elements[j];
-                if (el.ch == map.charAt(i)) {
-                    result.add(new Pair(xy.getXY(i), j));
-                }
-            }
-        }
-        return result;
+        return LevelUtils.getObjects(xy, map,
+                (pt, el) -> new Guard(pt, getNearest(bases, pt)),
+                GUARD, OTHER_GUARD);
     }
 }
