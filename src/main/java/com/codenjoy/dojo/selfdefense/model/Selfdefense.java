@@ -25,9 +25,11 @@ package com.codenjoy.dojo.selfdefense.model;
 
 import com.codenjoy.dojo.selfdefense.model.items.*;
 import com.codenjoy.dojo.selfdefense.services.Events;
+import com.codenjoy.dojo.selfdefense.services.GameSettings;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.printer.BoardReader;
+import com.codenjoy.dojo.services.settings.SettingsReader;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -47,7 +49,9 @@ public class Selfdefense implements Field {
     private final int size;
     private Dice dice;
 
-    public Selfdefense(Level level, Dice dice) {
+    private GameSettings settings;
+
+    public Selfdefense(Level level, Dice dice, GameSettings settings) {
         this.dice = dice;
         bases = level.getBases();
         platforms = level.getPlatforms(bases);
@@ -55,6 +59,7 @@ public class Selfdefense implements Field {
         guards = level.getGuards(bases);
         enemies = level.getEnemies();
         size = level.getSize();
+        this.settings = settings;
         players = new LinkedList<>();
     }
 
@@ -126,6 +131,11 @@ public class Selfdefense implements Field {
         platforms  = (List)getWithout(hero, platforms);
         guards     = (List)getWithout(hero, guards);
         spaceships = (List)getWithout(hero, spaceships);
+    }
+
+    @Override
+    public GameSettings settings() {
+        return settings;
     }
 
     private List<? extends Ownerable> getWithout(Hero hero, List<? extends Ownerable> list) {

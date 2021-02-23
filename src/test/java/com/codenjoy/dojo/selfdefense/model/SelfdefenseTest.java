@@ -23,9 +23,9 @@ package com.codenjoy.dojo.selfdefense.model;
  */
 
 
+import com.codenjoy.dojo.selfdefense.services.GameSettings;
 import com.codenjoy.dojo.services.printer.PrinterFactory;
 import com.codenjoy.dojo.utils.TestUtils;
-import com.codenjoy.dojo.selfdefense.services.Events;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.EventListener;
 import com.codenjoy.dojo.services.printer.PrinterFactoryImpl;
@@ -47,10 +47,12 @@ public class SelfdefenseTest {
     private EventListener listener;
     private Player player;
     private PrinterFactory printer = new PrinterFactoryImpl();
+    private GameSettings settings;
 
     @Before
     public void setup() {
         dice = mock(Dice.class);
+        settings = new GameSettings();
     }
 
     private void dice(int...ints) {
@@ -63,9 +65,9 @@ public class SelfdefenseTest {
     private void givenFl(String board) {
         LevelImpl level = new LevelImpl(board);
 
-        game = new Selfdefense(level, dice);
+        game = new Selfdefense(level, dice, settings);
         listener = mock(EventListener.class);
-        player = new Player(listener);
+        player = new Player(listener, settings);
         game.newGame(player);
         hero = player.getHero();
     }

@@ -23,6 +23,7 @@ package com.codenjoy.dojo.selfdefense.model;
  */
 
 
+import com.codenjoy.dojo.selfdefense.services.GameSettings;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.EventListener;
 import com.codenjoy.dojo.services.Game;
@@ -32,6 +33,7 @@ import com.codenjoy.dojo.services.printer.PrinterFactoryImpl;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.codenjoy.dojo.selfdefense.services.GameSettings.Keys.LEVEL_MAP;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
@@ -47,11 +49,13 @@ public class SingleTest {
     private Game game3;
     private Dice dice;
     private Selfdefense field;
+    private GameSettings settings;
 
     // появляется другие игроки, игра становится мультипользовательской
     @Before
     public void setup() {
-        Level level = new LevelImpl(
+        settings = new GameSettings()
+            .string(LEVEL_MAP,
                 "           " +
                 "           " +
                 "           " +
@@ -65,19 +69,19 @@ public class SingleTest {
                 "+☺+ *☻* *☻*");
 
         dice = mock(Dice.class);
-        field = new Selfdefense(level, dice);
+        field = new Selfdefense(settings.level(), dice, settings);
         PrinterFactory factory = new PrinterFactoryImpl();
 
         listener1 = mock(EventListener.class);
-        game1 = new Single(new Player(listener1), factory);
+        game1 = new Single(new Player(listener1, settings), factory);
         game1.on(field);
 
         listener2 = mock(EventListener.class);
-        game2 = new Single(new Player(listener2), factory);
+        game2 = new Single(new Player(listener2, settings), factory);
         game2.on(field);
 
         listener3 = mock(EventListener.class);
-        game3 = new Single(new Player(listener3), factory);
+        game3 = new Single(new Player(listener3, settings), factory);
         game3.on(field);
 
         dice(1, 4);
