@@ -2,13 +2,12 @@ package com.codenjoy.dojo.selfdefense.services;
 
 import com.codenjoy.dojo.selfdefense.model.Level;
 import com.codenjoy.dojo.selfdefense.model.LevelImpl;
-import com.codenjoy.dojo.services.round.RoundSettings;
 import com.codenjoy.dojo.services.settings.SettingsImpl;
 import com.codenjoy.dojo.services.settings.SettingsReader;
 
 import static com.codenjoy.dojo.selfdefense.services.GameSettings.Keys.*;
 
-public class GameSettings extends SettingsImpl implements SettingsReader<GameSettings>, RoundSettings {
+public class GameSettings extends SettingsImpl implements SettingsReader<GameSettings> {
 
     public enum Keys implements Key {
 
@@ -29,22 +28,22 @@ public class GameSettings extends SettingsImpl implements SettingsReader<GameSet
     }
 
     public GameSettings() {
-        addEditBox(WIN_SCORE.key()).type(Integer.class).def(30);
-        addEditBox(LOOSE_PENALTY.key()).type(Integer.class).def(100);
+        integer(WIN_SCORE, 30);
+        integer(LOOSE_PENALTY, 100);
 
-        addEditBox(LEVEL_MAP.key()).multiline().type(String.class).def(
+        multiline(LEVEL_MAP,
                 "            " +
-                        "  X .   X , " +
-                        "  .      ,  " +
-                        " . X . , X, " +
-                        "            " +
-                        " . .    ,   " +
-                        "            " +
-                        "   .    ,   " +
-                        "            " +
-                        " =+++=-***- " +
-                        "  +☺+  *☻*  " +
-                        "            ");
+                "  X .   X , " +
+                "  .      ,  " +
+                " . X . , X, " +
+                "            " +
+                " . .    ,   " +
+                "            " +
+                "   .    ,   " +
+                "            " +
+                " =+++=-***- " +
+                "  +☺+  *☻*  " +
+                "            ");
     }
 
     public Level level() {
