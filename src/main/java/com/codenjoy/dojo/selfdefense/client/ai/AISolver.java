@@ -30,16 +30,14 @@ import com.codenjoy.dojo.services.algs.DeikstraFindWay;
 
 public class AISolver implements Solver<Board> {
 
-    private DeikstraFindWay way;
     private Dice dice;
 
     public AISolver(Dice dice) {
         this.dice = dice;
-        this.way = new DeikstraFindWay();
     }
 
     @Override
-    public String get(final Board board) {
+    public String get(Board board) {
         return "";
     }
 
