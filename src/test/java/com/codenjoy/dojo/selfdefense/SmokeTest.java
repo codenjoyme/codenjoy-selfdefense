@@ -115,7 +115,7 @@ public class SmokeTest {
                         "1: +☺+  *☻* \n" +
                         "1:\n" +
                         "1:Scores: 0\n" +
-                        "1:Answer: \n" +
+                        "1:Answer:\n" +
                         "2:Board:\n" +
                         "2:X ,   X . \n" +
                         "2: ,      . \n" +
@@ -129,7 +129,7 @@ public class SmokeTest {
                         "2: *☻*  +☺+ \n" +
                         "2:\n" +
                         "2:Scores: 0\n" +
-                        "2:Answer: \n" +
+                        "2:Answer:\n" +
                         "------------------------------------------\n" +
                         "1:Board:\n" +
                         "1:X .   X , \n" +
@@ -144,7 +144,7 @@ public class SmokeTest {
                         "1: +☺+  *☻* \n" +
                         "1:\n" +
                         "1:Scores: 0\n" +
-                        "1:Answer: \n" +
+                        "1:Answer:\n" +
                         "2:Board:\n" +
                         "2:X ,   X . \n" +
                         "2: ,      . \n" +
@@ -158,7 +158,7 @@ public class SmokeTest {
                         "2: *☻*  +☺+ \n" +
                         "2:\n" +
                         "2:Scores: 0\n" +
-                        "2:Answer: \n" +
+                        "2:Answer:\n" +
                         "------------------------------------------\n" +
                         "1:Board:\n" +
                         "1:X .   X , \n" +
@@ -173,7 +173,7 @@ public class SmokeTest {
                         "1: +☺+  *☻* \n" +
                         "1:\n" +
                         "1:Scores: 0\n" +
-                        "1:Answer: \n" +
+                        "1:Answer:\n" +
                         "2:Board:\n" +
                         "2:X ,   X . \n" +
                         "2: ,      . \n" +
@@ -187,7 +187,7 @@ public class SmokeTest {
                         "2: *☻*  +☺+ \n" +
                         "2:\n" +
                         "2:Scores: 0\n" +
-                        "2:Answer: \n" +
+                        "2:Answer:\n" +
                         "------------------------------------------\n" +
                         "1:Board:\n" +
                         "1:X .   X , \n" +
@@ -202,7 +202,7 @@ public class SmokeTest {
                         "1: +☺+  *☻* \n" +
                         "1:\n" +
                         "1:Scores: 0\n" +
-                        "1:Answer: \n" +
+                        "1:Answer:\n" +
                         "2:Board:\n" +
                         "2:X ,   X . \n" +
                         "2: ,      . \n" +
@@ -216,7 +216,7 @@ public class SmokeTest {
                         "2: *☻*  +☺+ \n" +
                         "2:\n" +
                         "2:Scores: 0\n" +
-                        "2:Answer: \n" +
+                        "2:Answer:\n" +
                         "------------------------------------------\n" +
                         "1:Board:\n" +
                         "1:X .   X , \n" +
@@ -231,7 +231,7 @@ public class SmokeTest {
                         "1: +☺+  *☻* \n" +
                         "1:\n" +
                         "1:Scores: 0\n" +
-                        "1:Answer: \n" +
+                        "1:Answer:\n" +
                         "2:Board:\n" +
                         "2:X ,   X . \n" +
                         "2: ,      . \n" +
@@ -245,7 +245,7 @@ public class SmokeTest {
                         "2: *☻*  +☺+ \n" +
                         "2:\n" +
                         "2:Scores: 0\n" +
-                        "2:Answer: \n" +
+                        "2:Answer:\n" +
                         "------------------------------------------\n" +
                         "1:Board:\n" +
                         "1:X .   X , \n" +
@@ -260,7 +260,7 @@ public class SmokeTest {
                         "1: +☺+  *☻* \n" +
                         "1:\n" +
                         "1:Scores: 0\n" +
-                        "1:Answer: \n" +
+                        "1:Answer:\n" +
                         "2:Board:\n" +
                         "2:X ,   X . \n" +
                         "2: ,      . \n" +
@@ -274,7 +274,7 @@ public class SmokeTest {
                         "2: *☻*  +☺+ \n" +
                         "2:\n" +
                         "2:Scores: 0\n" +
-                        "2:Answer: \n" +
+                        "2:Answer:\n" +
                         "------------------------------------------\n" +
                         "1:Board:\n" +
                         "1:X .   X , \n" +
@@ -289,7 +289,7 @@ public class SmokeTest {
                         "1: +☺+  *☻* \n" +
                         "1:\n" +
                         "1:Scores: 0\n" +
-                        "1:Answer: \n" +
+                        "1:Answer:\n" +
                         "2:Board:\n" +
                         "2:X ,   X . \n" +
                         "2: ,      . \n" +
@@ -303,7 +303,7 @@ public class SmokeTest {
                         "2: *☻*  +☺+ \n" +
                         "2:\n" +
                         "2:Scores: 0\n" +
-                        "2:Answer: \n" +
+                        "2:Answer:\n" +
                         "------------------------------------------\n" +
                         "1:Board:\n" +
                         "1:X .   X , \n" +
@@ -318,7 +318,7 @@ public class SmokeTest {
                         "1: +☺+  *☻* \n" +
                         "1:\n" +
                         "1:Scores: 0\n" +
-                        "1:Answer: \n" +
+                        "1:Answer:\n" +
                         "2:Board:\n" +
                         "2:X ,   X . \n" +
                         "2: ,      . \n" +
@@ -332,7 +332,7 @@ public class SmokeTest {
                         "2: *☻*  +☺+ \n" +
                         "2:\n" +
                         "2:Scores: 0\n" +
-                        "2:Answer: \n" +
+                        "2:Answer:\n" +
                         "------------------------------------------\n" +
                         "1:Board:\n" +
                         "1:X .   X , \n" +
@@ -347,7 +347,7 @@ public class SmokeTest {
                         "1: +☺+  *☻* \n" +
                         "1:\n" +
                         "1:Scores: 0\n" +
-                        "1:Answer: \n" +
+                        "1:Answer:\n" +
                         "2:Board:\n" +
                         "2:X ,   X . \n" +
                         "2: ,      . \n" +
@@ -361,7 +361,7 @@ public class SmokeTest {
                         "2: *☻*  +☺+ \n" +
                         "2:\n" +
                         "2:Scores: 0\n" +
-                        "2:Answer: \n" +
+                        "2:Answer:\n" +
                         "------------------------------------------\n" +
                         "1:Board:\n" +
                         "1:X .   X , \n" +
@@ -376,7 +376,7 @@ public class SmokeTest {
                         "1: +☺+  *☻* \n" +
                         "1:\n" +
                         "1:Scores: 0\n" +
-                        "1:Answer: \n" +
+                        "1:Answer:\n" +
                         "2:Board:\n" +
                         "2:X ,   X . \n" +
                         "2: ,      . \n" +
@@ -390,7 +390,7 @@ public class SmokeTest {
                         "2: *☻*  +☺+ \n" +
                         "2:\n" +
                         "2:Scores: 0\n" +
-                        "2:Answer: \n" +
+                        "2:Answer:\n" +
                         "------------------------------------------",
                 String.join("\n", messages));
 
