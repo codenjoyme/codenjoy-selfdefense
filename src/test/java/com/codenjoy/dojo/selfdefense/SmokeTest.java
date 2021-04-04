@@ -23,376 +23,54 @@ package com.codenjoy.dojo.selfdefense;
  */
 
 
-import com.codenjoy.dojo.client.ClientBoard;
 import com.codenjoy.dojo.client.local.LocalGameRunner;
-import com.codenjoy.dojo.client.Solver;
 import com.codenjoy.dojo.selfdefense.client.Board;
 import com.codenjoy.dojo.selfdefense.client.ai.AISolver;
 import com.codenjoy.dojo.selfdefense.services.GameRunner;
 import com.codenjoy.dojo.selfdefense.services.GameSettings;
 import com.codenjoy.dojo.services.Dice;
+import com.codenjoy.dojo.utils.Smoke;
 import org.junit.Test;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Arrays;
 
 import static com.codenjoy.dojo.selfdefense.services.GameSettings.Keys.LEVEL_MAP;
 import static org.junit.Assert.assertEquals;
 
 public class SmokeTest {
 
-    private Dice dice;
-
     @Test
     public void test() {
-        // given
-        List<String> messages = new LinkedList<>();
+        Dice dice = LocalGameRunner.getDice("435874345435874365843564398", 100, 200);
 
-        LocalGameRunner.timeout = 0;
-        LocalGameRunner.out = (e) -> messages.add(e);
-        LocalGameRunner.countIterations = 10;
+        // about 1 sec
+        int ticks = 1000;
 
-        Dice dice = LocalGameRunner.getDice(
-                0, 1, 2, 3, 4, // random numbers
-                0, 2, 2, 3, 1,
-                0, 1, 4, 1, 2,
-                1, 3, 2, 4, 1,
-                1, 3, 0, 0, 1,
-                0, 0, 1, 0, 2,
-                1, 3, 2, 4, 1,
-                0, 1, 1, 3, 3,
-                0, 2, 0, 0, 2,
-                0, 1, 2, 2, 1,
-                1, 3, 4, 3, 4,
-                1, 3, 2, 4, 1,
-                0, 1, 3, 1, 1);
+        Smoke.play(ticks, "SmokeTest.data",
+                new GameRunner() {
+                    @Override
+                    public Dice getDice() {
+                        return dice;
+                    }
 
-        GameRunner gameType = new GameRunner() {
-            @Override
-            public Dice getDice() {
-                return dice;
-            }
-
-            @Override
-            public GameSettings getSettings() {
-                return super.getSettings()
-                        .string(LEVEL_MAP,
-                                "X .   X , " +
-                                " .      , " +
-                                ". X . , X," +
-                                "          " +
-                                ". .    ,  " +
-                                "          " +
-                                "  .    ,  " +
-                                " ===  --- " +
-                                " +++  *** " +
-                                " +☺+  *☻* ");
-            }
-        };
-
-        // when
-        LocalGameRunner.run(gameType,
-                new LinkedList<Solver>(){{
-                    add(new AISolver(dice));
-                    add(new AISolver(dice));
-                }},
-                new LinkedList<ClientBoard>(){{
-                    add(new Board());
-                    add(new Board());
-                }});
-
-        // then
-        assertEquals("1:Board:\n" +
-                        "1:X .   X , \n" +
-                        "1: .      , \n" +
-                        "1:. X . , X,\n" +
-                        "1:          \n" +
-                        "1:. .    ,  \n" +
-                        "1:          \n" +
-                        "1:  .    ,  \n" +
-                        "1: ===  --- \n" +
-                        "1: +++  *** \n" +
-                        "1: +☺+  *☻* \n" +
-                        "1:\n" +
-                        "1:Scores: 0\n" +
-                        "1:Answer:\n" +
-                        "2:Board:\n" +
-                        "2:X ,   X . \n" +
-                        "2: ,      . \n" +
-                        "2:, X , . X.\n" +
-                        "2:          \n" +
-                        "2:, ,    .  \n" +
-                        "2:          \n" +
-                        "2:  ,    .  \n" +
-                        "2: ---  === \n" +
-                        "2: ***  +++ \n" +
-                        "2: *☻*  +☺+ \n" +
-                        "2:\n" +
-                        "2:Scores: 0\n" +
-                        "2:Answer:\n" +
-                        "------------------------------------------\n" +
-                        "1:Board:\n" +
-                        "1:X .   X , \n" +
-                        "1: .      , \n" +
-                        "1:. X . , X,\n" +
-                        "1:          \n" +
-                        "1:. .    ,  \n" +
-                        "1:          \n" +
-                        "1:  .    ,  \n" +
-                        "1: ===  --- \n" +
-                        "1: +++  *** \n" +
-                        "1: +☺+  *☻* \n" +
-                        "1:\n" +
-                        "1:Scores: 0\n" +
-                        "1:Answer:\n" +
-                        "2:Board:\n" +
-                        "2:X ,   X . \n" +
-                        "2: ,      . \n" +
-                        "2:, X , . X.\n" +
-                        "2:          \n" +
-                        "2:, ,    .  \n" +
-                        "2:          \n" +
-                        "2:  ,    .  \n" +
-                        "2: ---  === \n" +
-                        "2: ***  +++ \n" +
-                        "2: *☻*  +☺+ \n" +
-                        "2:\n" +
-                        "2:Scores: 0\n" +
-                        "2:Answer:\n" +
-                        "------------------------------------------\n" +
-                        "1:Board:\n" +
-                        "1:X .   X , \n" +
-                        "1: .      , \n" +
-                        "1:. X . , X,\n" +
-                        "1:          \n" +
-                        "1:. .    ,  \n" +
-                        "1:          \n" +
-                        "1:  .    ,  \n" +
-                        "1: ===  --- \n" +
-                        "1: +++  *** \n" +
-                        "1: +☺+  *☻* \n" +
-                        "1:\n" +
-                        "1:Scores: 0\n" +
-                        "1:Answer:\n" +
-                        "2:Board:\n" +
-                        "2:X ,   X . \n" +
-                        "2: ,      . \n" +
-                        "2:, X , . X.\n" +
-                        "2:          \n" +
-                        "2:, ,    .  \n" +
-                        "2:          \n" +
-                        "2:  ,    .  \n" +
-                        "2: ---  === \n" +
-                        "2: ***  +++ \n" +
-                        "2: *☻*  +☺+ \n" +
-                        "2:\n" +
-                        "2:Scores: 0\n" +
-                        "2:Answer:\n" +
-                        "------------------------------------------\n" +
-                        "1:Board:\n" +
-                        "1:X .   X , \n" +
-                        "1: .      , \n" +
-                        "1:. X . , X,\n" +
-                        "1:          \n" +
-                        "1:. .    ,  \n" +
-                        "1:          \n" +
-                        "1:  .    ,  \n" +
-                        "1: ===  --- \n" +
-                        "1: +++  *** \n" +
-                        "1: +☺+  *☻* \n" +
-                        "1:\n" +
-                        "1:Scores: 0\n" +
-                        "1:Answer:\n" +
-                        "2:Board:\n" +
-                        "2:X ,   X . \n" +
-                        "2: ,      . \n" +
-                        "2:, X , . X.\n" +
-                        "2:          \n" +
-                        "2:, ,    .  \n" +
-                        "2:          \n" +
-                        "2:  ,    .  \n" +
-                        "2: ---  === \n" +
-                        "2: ***  +++ \n" +
-                        "2: *☻*  +☺+ \n" +
-                        "2:\n" +
-                        "2:Scores: 0\n" +
-                        "2:Answer:\n" +
-                        "------------------------------------------\n" +
-                        "1:Board:\n" +
-                        "1:X .   X , \n" +
-                        "1: .      , \n" +
-                        "1:. X . , X,\n" +
-                        "1:          \n" +
-                        "1:. .    ,  \n" +
-                        "1:          \n" +
-                        "1:  .    ,  \n" +
-                        "1: ===  --- \n" +
-                        "1: +++  *** \n" +
-                        "1: +☺+  *☻* \n" +
-                        "1:\n" +
-                        "1:Scores: 0\n" +
-                        "1:Answer:\n" +
-                        "2:Board:\n" +
-                        "2:X ,   X . \n" +
-                        "2: ,      . \n" +
-                        "2:, X , . X.\n" +
-                        "2:          \n" +
-                        "2:, ,    .  \n" +
-                        "2:          \n" +
-                        "2:  ,    .  \n" +
-                        "2: ---  === \n" +
-                        "2: ***  +++ \n" +
-                        "2: *☻*  +☺+ \n" +
-                        "2:\n" +
-                        "2:Scores: 0\n" +
-                        "2:Answer:\n" +
-                        "------------------------------------------\n" +
-                        "1:Board:\n" +
-                        "1:X .   X , \n" +
-                        "1: .      , \n" +
-                        "1:. X . , X,\n" +
-                        "1:          \n" +
-                        "1:. .    ,  \n" +
-                        "1:          \n" +
-                        "1:  .    ,  \n" +
-                        "1: ===  --- \n" +
-                        "1: +++  *** \n" +
-                        "1: +☺+  *☻* \n" +
-                        "1:\n" +
-                        "1:Scores: 0\n" +
-                        "1:Answer:\n" +
-                        "2:Board:\n" +
-                        "2:X ,   X . \n" +
-                        "2: ,      . \n" +
-                        "2:, X , . X.\n" +
-                        "2:          \n" +
-                        "2:, ,    .  \n" +
-                        "2:          \n" +
-                        "2:  ,    .  \n" +
-                        "2: ---  === \n" +
-                        "2: ***  +++ \n" +
-                        "2: *☻*  +☺+ \n" +
-                        "2:\n" +
-                        "2:Scores: 0\n" +
-                        "2:Answer:\n" +
-                        "------------------------------------------\n" +
-                        "1:Board:\n" +
-                        "1:X .   X , \n" +
-                        "1: .      , \n" +
-                        "1:. X . , X,\n" +
-                        "1:          \n" +
-                        "1:. .    ,  \n" +
-                        "1:          \n" +
-                        "1:  .    ,  \n" +
-                        "1: ===  --- \n" +
-                        "1: +++  *** \n" +
-                        "1: +☺+  *☻* \n" +
-                        "1:\n" +
-                        "1:Scores: 0\n" +
-                        "1:Answer:\n" +
-                        "2:Board:\n" +
-                        "2:X ,   X . \n" +
-                        "2: ,      . \n" +
-                        "2:, X , . X.\n" +
-                        "2:          \n" +
-                        "2:, ,    .  \n" +
-                        "2:          \n" +
-                        "2:  ,    .  \n" +
-                        "2: ---  === \n" +
-                        "2: ***  +++ \n" +
-                        "2: *☻*  +☺+ \n" +
-                        "2:\n" +
-                        "2:Scores: 0\n" +
-                        "2:Answer:\n" +
-                        "------------------------------------------\n" +
-                        "1:Board:\n" +
-                        "1:X .   X , \n" +
-                        "1: .      , \n" +
-                        "1:. X . , X,\n" +
-                        "1:          \n" +
-                        "1:. .    ,  \n" +
-                        "1:          \n" +
-                        "1:  .    ,  \n" +
-                        "1: ===  --- \n" +
-                        "1: +++  *** \n" +
-                        "1: +☺+  *☻* \n" +
-                        "1:\n" +
-                        "1:Scores: 0\n" +
-                        "1:Answer:\n" +
-                        "2:Board:\n" +
-                        "2:X ,   X . \n" +
-                        "2: ,      . \n" +
-                        "2:, X , . X.\n" +
-                        "2:          \n" +
-                        "2:, ,    .  \n" +
-                        "2:          \n" +
-                        "2:  ,    .  \n" +
-                        "2: ---  === \n" +
-                        "2: ***  +++ \n" +
-                        "2: *☻*  +☺+ \n" +
-                        "2:\n" +
-                        "2:Scores: 0\n" +
-                        "2:Answer:\n" +
-                        "------------------------------------------\n" +
-                        "1:Board:\n" +
-                        "1:X .   X , \n" +
-                        "1: .      , \n" +
-                        "1:. X . , X,\n" +
-                        "1:          \n" +
-                        "1:. .    ,  \n" +
-                        "1:          \n" +
-                        "1:  .    ,  \n" +
-                        "1: ===  --- \n" +
-                        "1: +++  *** \n" +
-                        "1: +☺+  *☻* \n" +
-                        "1:\n" +
-                        "1:Scores: 0\n" +
-                        "1:Answer:\n" +
-                        "2:Board:\n" +
-                        "2:X ,   X . \n" +
-                        "2: ,      . \n" +
-                        "2:, X , . X.\n" +
-                        "2:          \n" +
-                        "2:, ,    .  \n" +
-                        "2:          \n" +
-                        "2:  ,    .  \n" +
-                        "2: ---  === \n" +
-                        "2: ***  +++ \n" +
-                        "2: *☻*  +☺+ \n" +
-                        "2:\n" +
-                        "2:Scores: 0\n" +
-                        "2:Answer:\n" +
-                        "------------------------------------------\n" +
-                        "1:Board:\n" +
-                        "1:X .   X , \n" +
-                        "1: .      , \n" +
-                        "1:. X . , X,\n" +
-                        "1:          \n" +
-                        "1:. .    ,  \n" +
-                        "1:          \n" +
-                        "1:  .    ,  \n" +
-                        "1: ===  --- \n" +
-                        "1: +++  *** \n" +
-                        "1: +☺+  *☻* \n" +
-                        "1:\n" +
-                        "1:Scores: 0\n" +
-                        "1:Answer:\n" +
-                        "2:Board:\n" +
-                        "2:X ,   X . \n" +
-                        "2: ,      . \n" +
-                        "2:, X , . X.\n" +
-                        "2:          \n" +
-                        "2:, ,    .  \n" +
-                        "2:          \n" +
-                        "2:  ,    .  \n" +
-                        "2: ---  === \n" +
-                        "2: ***  +++ \n" +
-                        "2: *☻*  +☺+ \n" +
-                        "2:\n" +
-                        "2:Scores: 0\n" +
-                        "2:Answer:\n" +
-                        "------------------------------------------",
-                String.join("\n", messages));
-
+                    @Override
+                    public GameSettings getSettings() {
+                        return new GameSettings()
+                                .string(LEVEL_MAP,
+                                        "X .   X , " +
+                                        " .      , " +
+                                        ". X . , X," +
+                                        "          " +
+                                        ". .    ,  " +
+                                        "          " +
+                                        "  .    ,  " +
+                                        " ===  --- " +
+                                        " +++  *** " +
+                                        " +☺+  *☻* ");
+                    }
+                },
+                Arrays.asList(new AISolver(dice), new AISolver(dice)),
+                Arrays.asList(new Board(), new Board()),
+                (o1, o2) -> assertEquals(o1, o2));
     }
 }
