@@ -158,7 +158,7 @@ public class Selfdefense implements Field {
 
     @Override
     public BoardReader reader() {
-        return new BoardReader() {
+        return new BoardReader<Player>() {
             private int size = Selfdefense.this.size;
 
             @Override
@@ -167,7 +167,7 @@ public class Selfdefense implements Field {
             }
 
             @Override
-            public Iterable<? extends Point> elements() {
+            public Iterable<? extends Point> elements(Player player) {
                 return new LinkedList<Point>(){{
                     addAll(Selfdefense.this.getPlatforms());
                     addAll(Selfdefense.this.getGuards());
