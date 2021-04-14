@@ -57,16 +57,16 @@ public class SmokeTest {
                     public GameSettings getSettings() {
                         return new GameSettings()
                                 .string(LEVEL_MAP,
-                                        "X .   X , " +
-                                        " .      , " +
-                                        ". X . , X," +
-                                        "          " +
-                                        ". .    ,  " +
-                                        "          " +
-                                        "  .    ,  " +
-                                        " ===  --- " +
-                                        " +++  *** " +
-                                        " +☺+  *☻* ");
+                                        "X .   X , \n" +
+                                        " .      , \n" +
+                                        ". X . , X,\n" +
+                                        "          \n" +
+                                        ". .    ,  \n" +
+                                        "          \n" +
+                                        "  .    ,  \n" +
+                                        " ===  --- \n" +
+                                        " +++  *** \n" +
+                                        " +☺+  *☻* \n");
                     }
                 },
                 Arrays.asList(new AISolver(dice), new AISolver(dice)),

@@ -62,18 +62,18 @@ public class GameSettings extends SettingsImpl implements SettingsReader<GameSet
         integer(LOOSE_PENALTY, 100);
 
         multiline(LEVEL_MAP,
-                "            " +
-                "  X .   X , " +
-                "  .      ,  " +
-                " . X . , X, " +
-                "            " +
-                " . .    ,   " +
-                "            " +
-                "   .    ,   " +
-                "            " +
-                " =+++=-***- " +
-                "  +☺+  *☻*  " +
-                "            ");
+                "            \n" +
+                "  X .   X , \n" +
+                "  .      ,  \n" +
+                " . X . , X, \n" +
+                "            \n" +
+                " . .    ,   \n" +
+                "            \n" +
+                "   .    ,   \n" +
+                "            \n" +
+                " =+++=-***- \n" +
+                "  +☺+  *☻*  \n" +
+                "            \n");
     }
 
     public Level level() {
