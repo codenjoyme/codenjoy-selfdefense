@@ -23,5 +23,5 @@ package com.codenjoy.dojo.selfdefense.services;
  */
 
 public enum Events {
-    WIN, LOOSE;
+    WIN, LOSE;
 }

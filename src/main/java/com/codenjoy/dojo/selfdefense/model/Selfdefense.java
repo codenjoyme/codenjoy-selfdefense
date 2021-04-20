@@ -29,7 +29,6 @@ import com.codenjoy.dojo.selfdefense.services.GameSettings;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.printer.BoardReader;
-import com.codenjoy.dojo.services.settings.SettingsReader;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -74,7 +73,7 @@ public class Selfdefense implements Field {
             Hero hero = player.getHero();
 
             if (!hero.isAlive()) {
-                player.event(Events.LOOSE);
+                player.event(Events.LOSE);
             }
         }
     }
