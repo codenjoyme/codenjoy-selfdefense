@@ -25,29 +25,17 @@ package com.codenjoy.dojo.selfdefense.model;
 
 import com.codenjoy.dojo.selfdefense.services.GameSettings;
 import com.codenjoy.dojo.services.EventListener;
+import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.multiplayer.GamePlayer;
 
 public class Player extends GamePlayer<Hero, Field> {
-
-    Hero hero;
 
     public Player(EventListener listener, GameSettings settings) {
         super(listener, settings);
     }
 
-    public Hero getHero() {
-        return hero;
-    }
-
     @Override
-    public void newHero(Field field) {
-        hero = field.getFreeBase();
-        hero.init(field);
+    public Hero createHero(Point pt) {
+        return field.getFreeBase();
     }
-
-    @Override
-    public boolean isAlive() {
-        return hero != null && hero.isAlive();
-    }
-
 }
