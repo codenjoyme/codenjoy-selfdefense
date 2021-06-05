@@ -31,7 +31,7 @@ import com.codenjoy.dojo.utils.LevelUtils;
 import java.util.Comparator;
 import java.util.List;
 
-import static com.codenjoy.dojo.selfdefense.client.Element.*;
+import static com.codenjoy.dojo.games.selfdefense.Element.*;
 
 public class LevelImpl implements Level {
 

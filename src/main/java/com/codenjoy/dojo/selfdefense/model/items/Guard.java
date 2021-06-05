@@ -23,7 +23,7 @@ package com.codenjoy.dojo.selfdefense.model.items;
  */
 
 
-import com.codenjoy.dojo.selfdefense.client.Element;
+import com.codenjoy.dojo.games.selfdefense.Element;
 import com.codenjoy.dojo.selfdefense.model.Hero;
 import com.codenjoy.dojo.selfdefense.model.Player;
 import com.codenjoy.dojo.services.Point;

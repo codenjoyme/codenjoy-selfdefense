@@ -25,8 +25,8 @@ package com.codenjoy.dojo.selfdefense.services;
 
 import com.codenjoy.dojo.client.ClientBoard;
 import com.codenjoy.dojo.client.Solver;
-import com.codenjoy.dojo.selfdefense.client.Board;
-import com.codenjoy.dojo.selfdefense.client.Element;
+import com.codenjoy.dojo.games.selfdefense.Board;
+import com.codenjoy.dojo.games.selfdefense.Element;
 import com.codenjoy.dojo.selfdefense.model.*;
 import com.codenjoy.dojo.services.*;
 import com.codenjoy.dojo.services.multiplayer.GameField;

@@ -24,9 +24,8 @@ package com.codenjoy.dojo.selfdefense.services.ai;
 
 
 import com.codenjoy.dojo.client.Solver;
-import com.codenjoy.dojo.selfdefense.client.Board;
+import com.codenjoy.dojo.games.selfdefense.Board;
 import com.codenjoy.dojo.services.Dice;
-import com.codenjoy.dojo.services.algs.DeikstraFindWay;
 
 public class AISolver implements Solver<Board> {
 

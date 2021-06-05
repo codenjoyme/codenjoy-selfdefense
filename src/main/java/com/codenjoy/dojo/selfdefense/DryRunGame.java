@@ -24,7 +24,7 @@ package com.codenjoy.dojo.selfdefense;
 
 import com.codenjoy.dojo.client.KeyboardSolver;
 import com.codenjoy.dojo.client.local.LocalGameRunner;
-import com.codenjoy.dojo.selfdefense.client.Board;
+import com.codenjoy.dojo.games.selfdefense.Board;
 import com.codenjoy.dojo.selfdefense.services.GameRunner;
 
 public class DryRunGame {
