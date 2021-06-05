@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.selfdefense.client.ai;
+package com.codenjoy.dojo.selfdefense.services.ai;
 
 /*-
  * #%L
