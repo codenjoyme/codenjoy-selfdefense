@@ -29,11 +29,9 @@ import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.utils.LevelUtils;
 
 import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.List;
 
-import static com.codenjoy.dojo.selfdefense.model.Elements.*;
-import static java.util.stream.Collectors.toList;
+import static com.codenjoy.dojo.selfdefense.client.Element.*;
 
 public class LevelImpl implements Level {
 

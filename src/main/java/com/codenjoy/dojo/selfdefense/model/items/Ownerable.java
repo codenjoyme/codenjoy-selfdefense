@@ -22,14 +22,14 @@ package com.codenjoy.dojo.selfdefense.model.items;
  * #L%
  */
 
-import com.codenjoy.dojo.selfdefense.model.Elements;
+import com.codenjoy.dojo.selfdefense.client.Element;
 import com.codenjoy.dojo.selfdefense.model.Hero;
 import com.codenjoy.dojo.selfdefense.model.Player;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.PointImpl;
 import com.codenjoy.dojo.services.State;
 
-public abstract class Ownerable extends PointImpl implements State<Elements, Player> {
+public abstract class Ownerable extends PointImpl implements State<Element, Player> {
 
     private Hero owner;
 

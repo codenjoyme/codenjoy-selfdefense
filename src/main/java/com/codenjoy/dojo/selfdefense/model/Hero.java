@@ -23,13 +23,14 @@ package com.codenjoy.dojo.selfdefense.model;
  */
 
 
+import com.codenjoy.dojo.selfdefense.client.Element;
 import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.State;
 import com.codenjoy.dojo.services.joystick.NoDirectionJoystick;
 import com.codenjoy.dojo.services.multiplayer.PlayerHero;
 
-public class Hero extends PlayerHero<Field> implements State<Elements, Player>, NoDirectionJoystick {
+public class Hero extends PlayerHero<Field> implements State<Element, Player>, NoDirectionJoystick {
 
     private boolean alive;
     private Direction direction;
@@ -64,11 +65,11 @@ public class Hero extends PlayerHero<Field> implements State<Elements, Player>, 
     }
 
     @Override
-    public Elements state(Player player, Object... alsoAtPoint) {
+    public Element state(Player player, Object... alsoAtPoint) {
         if (player.getHero() == this) {
-            return Elements.BASE;
+            return Element.BASE;
         } else {
-            return Elements.OTHER_BASE;
+            return Element.OTHER_BASE;
         }
     }
 }

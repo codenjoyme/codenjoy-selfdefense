@@ -22,20 +22,20 @@ package com.codenjoy.dojo.selfdefense.model.items;
  * #L%
  */
 
-import com.codenjoy.dojo.selfdefense.model.Elements;
+import com.codenjoy.dojo.selfdefense.client.Element;
 import com.codenjoy.dojo.selfdefense.model.Player;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.PointImpl;
 import com.codenjoy.dojo.services.State;
 
-public class Enemy extends PointImpl implements State<Elements, Player> {
+public class Enemy extends PointImpl implements State<Element, Player> {
 
     public Enemy(Point point) {
         super(point);
     }
 
     @Override
-    public Elements state(Player player, Object... alsoAtPoint) {
-        return Elements.ENEMY;
+    public Element state(Player player, Object... alsoAtPoint) {
+        return Element.ENEMY;
     }
 }

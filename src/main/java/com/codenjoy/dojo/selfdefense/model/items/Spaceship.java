@@ -23,7 +23,7 @@ package com.codenjoy.dojo.selfdefense.model.items;
  */
 
 
-import com.codenjoy.dojo.selfdefense.model.Elements;
+import com.codenjoy.dojo.selfdefense.client.Element;
 import com.codenjoy.dojo.selfdefense.model.Hero;
 import com.codenjoy.dojo.selfdefense.model.Player;
 import com.codenjoy.dojo.services.Point;
@@ -35,11 +35,11 @@ public class Spaceship extends Ownerable {
     }
 
     @Override
-    public Elements state(Player player, Object... alsoAtPoint) {
+    public Element state(Player player, Object... alsoAtPoint) {
         if (player.getHero() == getHero()) {
-            return Elements.SPACESHIP;
+            return Element.SPACESHIP;
         } else {
-            return Elements.OTHER_SPACESHIP;
+            return Element.OTHER_SPACESHIP;
         }
     }
 }
