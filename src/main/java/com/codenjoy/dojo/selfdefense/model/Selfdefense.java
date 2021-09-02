@@ -32,6 +32,7 @@ import com.codenjoy.dojo.services.printer.BoardReader;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import static java.util.stream.Collectors.toList;
 
@@ -166,14 +167,12 @@ public class Selfdefense implements Field {
             }
 
             @Override
-            public Iterable<? extends Point> elements(Player player) {
-                return new LinkedList<Point>(){{
-                    addAll(Selfdefense.this.getPlatforms());
-                    addAll(Selfdefense.this.getGuards());
-                    addAll(Selfdefense.this.getHeroes());
-                    addAll(Selfdefense.this.getSpaceships());
-                    addAll(Selfdefense.this.getEnemies());
-                }};
+            public void addAll(Player player, Consumer<Iterable<? extends Point>> processor) {
+                processor.accept(getPlatforms());
+                processor.accept(getGuards());
+                processor.accept(getHeroes());
+                processor.accept(getSpaceships());
+                processor.accept(getEnemies());
             }
         };
     }
