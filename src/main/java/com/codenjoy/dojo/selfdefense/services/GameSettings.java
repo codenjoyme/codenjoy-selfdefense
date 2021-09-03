@@ -23,7 +23,6 @@ package com.codenjoy.dojo.selfdefense.services;
  */
 
 import com.codenjoy.dojo.selfdefense.model.Level;
-import com.codenjoy.dojo.selfdefense.model.LevelImpl;
 import com.codenjoy.dojo.services.settings.SettingsImpl;
 import com.codenjoy.dojo.services.settings.SettingsReader;
 
@@ -77,6 +76,6 @@ public class GameSettings extends SettingsImpl implements SettingsReader<GameSet
     }
 
     public Level level() {
-        return new LevelImpl(string(LEVEL_MAP));
+        return new Level(string(LEVEL_MAP));
     }
 }

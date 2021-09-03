@@ -58,7 +58,7 @@ public class Selfdefense implements Field {
         spaceships = level.getSpaceships(bases);
         guards = level.getGuards(bases);
         enemies = level.getEnemies();
-        size = level.getSize();
+        size = level.size();
         this.settings = settings;
         players = new LinkedList<>();
     }
