@@ -41,11 +41,13 @@ public class Level extends AbstractLevel {
     }
 
     public List<Hero> getBases() {
-        return find((pt, el) -> new Hero(pt), BASE, OTHER_BASE);
+        return find(Hero::new,
+                BASE, OTHER_BASE);
     }
 
     public List<Enemy> getEnemies() {
-        return find((pt, el) -> new Enemy(pt), ENEMY);
+        return find(Enemy::new,
+                ENEMY);
     }
 
     public List<Platform> getPlatforms(List<Hero> bases) {
