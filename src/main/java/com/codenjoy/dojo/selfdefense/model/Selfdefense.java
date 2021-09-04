@@ -53,11 +53,11 @@ public class Selfdefense implements Field {
 
     public Selfdefense(Level level, Dice dice, GameSettings settings) {
         this.dice = dice;
-        bases = level.getBases();
-        platforms = level.getPlatforms(bases);
-        spaceships = level.getSpaceships(bases);
-        guards = level.getGuards(bases);
-        enemies = level.getEnemies();
+        bases = level.bases();
+        platforms = level.platforms(bases);
+        spaceships = level.spaceships(bases);
+        guards = level.guards(bases);
+        enemies = level.enemies();
         size = level.size();
         this.settings = settings;
         players = new LinkedList<>();

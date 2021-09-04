@@ -24,10 +24,8 @@ package com.codenjoy.dojo.selfdefense.model;
 
 
 import com.codenjoy.dojo.selfdefense.model.items.*;
-import com.codenjoy.dojo.services.LengthToXY;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.field.AbstractLevel;
-import com.codenjoy.dojo.utils.LevelUtils;
 
 import java.util.Comparator;
 import java.util.List;
@@ -40,35 +38,35 @@ public class Level extends AbstractLevel {
         super(map);
     }
 
-    public List<Hero> getBases() {
+    public List<Hero> bases() {
         return find(Hero::new,
                 BASE, OTHER_BASE);
     }
 
-    public List<Enemy> getEnemies() {
+    public List<Enemy> enemies() {
         return find(Enemy::new,
                 ENEMY);
     }
 
-    public List<Platform> getPlatforms(List<Hero> bases) {
-        return find((pt, el) -> new Platform(pt, getNearest(bases, pt)),
+    public List<Platform> platforms(List<Hero> bases) {
+        return find((pt, el) -> new Platform(pt, nearest(bases, pt)),
                 PLATFORM, OTHER_PLATFORM);
     }
 
-    private Hero getNearest(List<Hero> bases, Point point) {
+    private Hero nearest(List<Hero> bases, Point point) {
         return bases.stream()
                 .sorted(Comparator.comparingDouble(base -> base.distance(point)))
                 .findFirst()
                 .get();
     }
 
-    public List<Spaceship> getSpaceships(List<Hero> bases) {
-        return find((pt, el) -> new Spaceship(pt, getNearest(bases, pt)),
+    public List<Spaceship> spaceships(List<Hero> bases) {
+        return find((pt, el) -> new Spaceship(pt, nearest(bases, pt)),
                 SPACESHIP, OTHER_SPACESHIP);
     }
 
-    public List<Guard> getGuards(List<Hero> bases) {
-        return find((pt, el) -> new Guard(pt, getNearest(bases, pt)),
+    public List<Guard> guards(List<Hero> bases) {
+        return find((pt, el) -> new Guard(pt, nearest(bases, pt)),
                 GUARD, OTHER_GUARD);
     }
 }
