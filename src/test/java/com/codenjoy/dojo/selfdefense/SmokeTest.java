@@ -23,30 +23,36 @@ package com.codenjoy.dojo.selfdefense;
  */
 
 
-import com.codenjoy.dojo.client.local.LocalGameRunner;
 import com.codenjoy.dojo.games.selfdefense.Board;
-import com.codenjoy.dojo.selfdefense.services.ai.AISolver;
 import com.codenjoy.dojo.selfdefense.services.GameRunner;
 import com.codenjoy.dojo.selfdefense.services.GameSettings;
+import com.codenjoy.dojo.selfdefense.services.ai.AISolver;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.utils.Smoke;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
 
 import static com.codenjoy.dojo.selfdefense.services.GameSettings.Keys.LEVEL_MAP;
-import static org.junit.Assert.assertEquals;
 
 public class SmokeTest {
 
+    private Smoke smoke;
+    private Dice dice;
+
+    @Before
+    public void setup() {
+        smoke = new Smoke();
+        dice = smoke.dice();
+    }
+
     @Test
     public void test() {
-        Dice dice = LocalGameRunner.getDice("435874345435874365843564398", 100, 200);
-
         // about 1 sec
         int ticks = 1000;
 
-        Smoke.play(ticks, "SmokeTest.data",
+        smoke.play(ticks, "SmokeTest.data",
                 new GameRunner() {
                     @Override
                     public Dice getDice() {

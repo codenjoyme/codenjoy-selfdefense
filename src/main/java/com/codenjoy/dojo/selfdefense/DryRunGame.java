@@ -24,15 +24,17 @@ package com.codenjoy.dojo.selfdefense;
 
 import com.codenjoy.dojo.client.KeyboardSolver;
 import com.codenjoy.dojo.client.local.LocalGameRunner;
-import com.codenjoy.dojo.games.selfdefense.Board;
+import com.codenjoy.dojo.games.sample.Board;
 import com.codenjoy.dojo.selfdefense.services.GameRunner;
 
 public class DryRunGame {
 
     public static void main(String[] args) {
-        LocalGameRunner.run(new GameRunner(),
-                new KeyboardSolver(),
-                // new AISolver(new RandomDice()),
-                new Board());
+        new LocalGameRunner()
+                .with(new GameRunner())
+                .add(new KeyboardSolver(),
+                        // new AISolver(new RandomDice()),
+                        new Board())
+                .run();
     }
 }
