@@ -24,7 +24,7 @@ package com.codenjoy.dojo.selfdefense.model;
 
 
 import com.codenjoy.dojo.selfdefense.model.items.*;
-import com.codenjoy.dojo.selfdefense.services.Events;
+import com.codenjoy.dojo.selfdefense.services.Event;
 import com.codenjoy.dojo.selfdefense.services.GameSettings;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Point;
@@ -74,7 +74,7 @@ public class Selfdefense implements Field {
             Hero hero = player.getHero();
 
             if (!hero.isAlive()) {
-                player.event(Events.LOSE);
+                player.event(Event.LOSE);
             }
         }
     }
