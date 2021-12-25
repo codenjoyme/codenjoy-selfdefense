@@ -23,6 +23,7 @@ package com.codenjoy.dojo.selfdefense.services;
  */
 
 import com.codenjoy.dojo.selfdefense.model.Level;
+import com.codenjoy.dojo.services.event.Calculator;
 import com.codenjoy.dojo.services.settings.SettingsImpl;
 import com.codenjoy.dojo.services.settings.SettingsReader;
 
@@ -35,9 +36,9 @@ public class GameSettings extends SettingsImpl implements SettingsReader<GameSet
 
     public enum Keys implements Key {
 
-        WIN_SCORE("Win score"),
-        LOSE_PENALTY("Lose penalty"),
-        LEVEL_MAP("Level map");
+        WIN_SCORE("[Score] Win score"),
+        LOSE_PENALTY("[Score] Lose penalty"),
+        LEVEL_MAP("[Level] Level map");
 
         private String key;
 
@@ -58,7 +59,7 @@ public class GameSettings extends SettingsImpl implements SettingsReader<GameSet
 
     public GameSettings() {
         integer(WIN_SCORE, 30);
-        integer(LOSE_PENALTY, 100);
+        integer(LOSE_PENALTY, -100);
 
         multiline(LEVEL_MAP,
                 "            \n" +
@@ -77,5 +78,9 @@ public class GameSettings extends SettingsImpl implements SettingsReader<GameSet
 
     public Level level() {
         return new Level(string(LEVEL_MAP));
+    }
+
+    public Calculator<Void> calculator() {
+        return new Calculator<>(new Scores(this));
     }
 }
