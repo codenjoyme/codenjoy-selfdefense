@@ -26,7 +26,7 @@ import com.codenjoy.dojo.games.selfdefense.Element;
 import com.codenjoy.dojo.selfdefense.model.Player;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.PointImpl;
-import com.codenjoy.dojo.services.State;
+import com.codenjoy.dojo.services.printer.state.State;
 
 public class Enemy extends PointImpl implements State<Element, Player> {
 
