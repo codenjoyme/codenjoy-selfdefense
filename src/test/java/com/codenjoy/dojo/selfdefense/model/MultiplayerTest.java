@@ -24,9 +24,9 @@ package com.codenjoy.dojo.selfdefense.model;
 
 
 import com.codenjoy.dojo.selfdefense.services.GameSettings;
-import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.EventListener;
 import com.codenjoy.dojo.services.Game;
+import com.codenjoy.dojo.services.dice.MockDice;
 import com.codenjoy.dojo.services.multiplayer.Single;
 import com.codenjoy.dojo.services.printer.PrinterFactory;
 import com.codenjoy.dojo.services.printer.PrinterFactoryImpl;
@@ -35,9 +35,7 @@ import org.junit.Test;
 
 import static com.codenjoy.dojo.selfdefense.services.GameSettings.Keys.LEVEL_MAP;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class MultiplayerTest {
 
@@ -47,7 +45,7 @@ public class MultiplayerTest {
     private Game game1;
     private Game game2;
     private Game game3;
-    private Dice dice;
+    private MockDice dice;
     private Selfdefense field;
     private GameSettings settings;
 
@@ -68,7 +66,7 @@ public class MultiplayerTest {
                 "=+= -*- -*-" +
                 "+☺+ *☻* *☻*");
 
-        dice = mock(Dice.class);
+        dice = new MockDice();
         field = new Selfdefense(settings.level(), dice, settings);
         PrinterFactory factory = new PrinterFactoryImpl();
 
@@ -94,8 +92,8 @@ public class MultiplayerTest {
         game3.newGame();
     }
 
-    private void dice(int x, int y) {
-        when(dice.next(anyInt())).thenReturn(x, y);
+    private void dice(Integer... next) {
+        dice.then(next);
     }
 
     private void asrtFl1(String expected) {
